@@ -86,3 +86,5 @@ for horizon in horizons:
     new_predictors+= [ratio_column, trend_column]
     
 snsx=snsx.dropna().copy()
+
+model = RandomForestClassifier(n_estimators=200, min_samples_split=50, random_state=1)
