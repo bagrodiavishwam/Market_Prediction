@@ -102,3 +102,6 @@ def predict(train, test, predictors, model):
 predictions=backtest(snsx,model, new_predictors)
 
 predictions["Predictions"].value_counts()
+
+precision_score(predictions["Target"], predictions["Predictions"])
+
