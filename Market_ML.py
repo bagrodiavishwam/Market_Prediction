@@ -65,3 +65,7 @@ def backtest(data, model, predictors, start=2520, step=252):
 predictions = backtest(snsx, model, predictors)
 
 predictions["Predictions"].value_counts()
+
+precision_score(predictions["Target"], predictions["Predictions"])
+
+predictions["Target"].value_counts() / predictions.shape[0]
