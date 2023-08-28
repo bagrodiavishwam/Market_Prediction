@@ -69,3 +69,19 @@ predictions["Predictions"].value_counts()
 precision_score(predictions["Target"], predictions["Predictions"])
 
 predictions["Target"].value_counts() / predictions.shape[0]
+
+horizons=[2,5,60,252,1004]
+new_predictors=[]
+
+
+for horizon in horizons:
+    rolling_averages=snsx.rolling(horizon).mean()
+    
+    ratio_column=f"CLose_Ratio_{horizon}"
+    snsx[ratio_column]=snsx["Close"]/rolling_averages["Close"]
+
+    trend_column = f"Trend_{horizon}"
+    snsx[trend_column]= snsx.shift(1).rolling(horizon).sum()["Target"]
+
+    new_predictors+= [ratio_column, trend_column]
+    
