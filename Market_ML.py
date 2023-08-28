@@ -37,3 +37,11 @@ precision_score(test["Target"], preds)
 combined = pd.concat([test["Target"], preds], axis=1)
 combined.columns=["Target", "Prediction"]
 combined.plot()
+
+def predict(train, test, predictors, model):
+    model.fit(train[predictors], train["Target"])
+    preds = model.predict(test[predictors])
+    preds = pd.Series(preds, index=test.index, name="Predictions")
+    combined = pd.concat([test["Target"], preds], axis=1)
+    # combined
+    return combined
