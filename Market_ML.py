@@ -9,3 +9,5 @@ else:
     snsx = snsx.history(period="max")
     snsx.to_csv("snsx.csv")
 
+del snsx ["Dividends"] 
+del snsx["Stock Splits"]
