@@ -32,3 +32,8 @@ from sklearn.metrics import precision_score
 preds = model.predict(test[predictors])
 preds = pd.Series(preds, index=test.index)
 precision_score(test["Target"], preds)
+
+
+combined = pd.concat([test["Target"], preds], axis=1)
+combined.columns=["Target", "Prediction"]
+combined.plot()
