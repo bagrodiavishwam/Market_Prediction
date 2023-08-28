@@ -45,3 +45,19 @@ def predict(train, test, predictors, model):
     combined = pd.concat([test["Target"], preds], axis=1)
     # combined
     return combined
+
+def backtest(data, model, predictors, start=2520, step=252):
+    '''start=2520 is that we are taking 2520 dataentries, which is equivalent to 10 years
+    step=252 means that we will take 252 entries and then proceed to the next year and repeat the same
+    essentially what we will do is take the values of the first 10 years and predict the value of the 11th year
+    then take the values of the first 11 years and predict the value for the 12th year and so on'''
+
+    all_predictions=[]
+    
+    for i in range(start, data.shape[0], step):
+        train = data.iloc[0:i].copy()
+        test=data.iloc[i:(i+step)].copy()
+        predictions = predict(train, test, predictors, model)
+        all_predictions.append(predictions)
+    
+    return pd.concat(all_predictions)
