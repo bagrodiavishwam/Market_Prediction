@@ -98,3 +98,7 @@ def predict(train, test, predictors, model):
     preds = pd.Series(preds, index=test.index, name="Predictions")
     combined = pd.concat([test["Target"], preds], axis=1)
     return combined
+
+predictions=backtest(snsx,model, new_predictors)
+
+predictions["Predictions"].value_counts()
