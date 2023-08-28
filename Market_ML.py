@@ -27,4 +27,8 @@ test = snsx.iloc[-100:]
 predictors = ["Close", "Volume", "Open", "High", "Low"]
 model.fit(train[predictors], train["Target"])
 
+from sklearn.metrics import precision_score
 
+preds = model.predict(test[predictors])
+preds = pd.Series(preds, index=test.index)
+precision_score(test["Target"], preds)
