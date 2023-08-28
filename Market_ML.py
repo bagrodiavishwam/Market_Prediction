@@ -85,3 +85,4 @@ for horizon in horizons:
 
     new_predictors+= [ratio_column, trend_column]
     
+snsx=snsx.dropna().copy()
