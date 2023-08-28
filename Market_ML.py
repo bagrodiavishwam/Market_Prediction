@@ -61,3 +61,7 @@ def backtest(data, model, predictors, start=2520, step=252):
         all_predictions.append(predictions)
     
     return pd.concat(all_predictions)
+
+predictions = backtest(snsx, model, predictors)
+
+predictions["Predictions"].value_counts()
